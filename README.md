@@ -17,7 +17,7 @@ I can tell you what it doesn't support! As the list for that is much shorter tha
 - Multiline strings
 - Template strings
 - Static variables 
-- Constructor
+- Declaring constructor functions 
 - "global function" syntax `function func() {}`
 - try/catch/finally
 - enums
