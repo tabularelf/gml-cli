@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"helper_funcs",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"helper_funcs",
+  "parent":{
+    "name":"GML-CLI",
+    "path":"GML-CLI.yyp",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
