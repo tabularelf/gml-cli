@@ -24,3 +24,4 @@ I can tell you what it doesn't support! As the list for that is much shorter tha
 - macros
 - exit keyword
 - delete keyword (ok it's technically supported but it has bugs so I've disabled it for now)
+- Erroring on non-existing variables (right now variables that don't exist return `undefined`... I'll support it in the future)
