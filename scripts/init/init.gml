@@ -14,6 +14,9 @@ for(var _i = 0; _i < 10000; ++_i) {
 	}     
 }
 
+//GMLSpeak.sharedGlobal.GMLSpeak = GMLSpeak;
+GMLSpeak.interface.exposeAsset("obj_blank");
+
 GMLSpeak.interface.exposeFunction(
 		"method_get_self", 
 		function(_func) {
@@ -34,7 +37,7 @@ GMLSpeak.interface.exposeFunction(
 		},
 		"method", 
 		function(_self, _func) {
-			if (is_catspeak(_func) && (_self == undefined ||_self == GMLspeak.sharedGlobal)) {
+			if (is_catspeak(_func) && (_self == undefined ||_self == GMLSpeak.sharedGlobal)) {
 				return __catspeak_get_callee__(_func);
 			}
 	

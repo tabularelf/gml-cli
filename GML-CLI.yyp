@@ -25,6 +25,7 @@
   "name":"GML-CLI",
   "resources":[
     {"id":{"name":"GMConsole","path":"extensions/GMConsole/GMConsole.yy",},},
+    {"id":{"name":"obj_blank","path":"objects/obj_blank/obj_blank.yy",},},
     {"id":{"name":"obj_game","path":"objects/obj_game/obj_game.yy",},},
     {"id":{"name":"rm_main","path":"rooms/rm_main/rm_main.yy",},},
     {"id":{"name":"__gmlspeak_error","path":"scripts/__gmlspeak_error/__gmlspeak_error.yy",},},

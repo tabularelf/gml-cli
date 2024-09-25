@@ -468,7 +468,7 @@ function CatspeakForeignInterface() constructor {
 /// default is 1 second.
 ///
 /// @return {Real}
-#macro CATSPEAK_TIMEOUT infinity
+#macro CATSPEAK_TIMEOUT global.catspeakTimeout
 
 /// @ignore
 ///
