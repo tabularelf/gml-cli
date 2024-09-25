@@ -25,3 +25,6 @@ I can tell you what it doesn't support! As the list for that is much shorter tha
 - exit keyword
 - delete keyword (ok it's technically supported but it has bugs so I've disabled it for now)
 - Erroring on non-existing variables (right now variables that don't exist return `undefined`... I'll support it in the future)
+
+# Known issues
+- GMConsole currently doesn't update the cursor position after execution has ended in powershell (cursed, seriously. I've looked up hundreds of solutions online. It's almost like as if this problem just doesn't exist!)
