@@ -84,6 +84,9 @@ try {
 			break;
 			case "script":
 				try {
+					if (string_starts_with(_params[_i].result, "./")) {
+						_params[_i].result = string_replace(_params[_i].result, "./", __GetExecutablePath());	
+					}
 					var _buff = buffer_load(_params[_i].result);
 					if (!buffer_exists(_buff)) {
 						global.result = 2;	// FILE NOT FOUND

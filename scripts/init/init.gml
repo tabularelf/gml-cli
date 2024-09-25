@@ -53,4 +53,6 @@ GMLSpeak.interface.exposeFunction(
 			print(_result);
 		}
 );
+
+GMLSpeak.interface.exposeConstant("pwd", __GetExecutablePath());
 		
