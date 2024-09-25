@@ -8,7 +8,7 @@ function execute(_func) {
 		_func();	
 	} catch(_ex) {
 		global.result = 1;
-		GMConsolePrint(_ex.message);
+		print(_ex.message);
 		game_end(global.result);
 	}
 }

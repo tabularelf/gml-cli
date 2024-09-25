@@ -68,12 +68,12 @@ try {
 		switch(_params[_i].paramName) {
 			case "debug":
 				global.debug = true;
-				GMConsolePrint("Debug mode enabled!")
+				print("Debug mode enabled!")
 			break;
 			case "keepalive":
 				call_cancel(gameEnd);
 				gameEnd = undefined;
-				if (global.debug) GMConsolePrint("Program is set to keep alive!");
+				if (global.debug) print("Program is set to keep alive!");
 			break;
 			case "timeout":
 				if (string_pos("inf", _params[_i])) {
@@ -93,7 +93,7 @@ try {
 						throw {message: "script was already defined!"};	
 					}
 					program = GMLSpeak.compile(GMLSpeak.parse(_buff));
-					if (global.debug) GMConsolePrint("Program compiled successfully!");
+					if (global.debug) print("Program compiled successfully!");
 				} finally {
 					if (buffer_exists(_buff)) buffer_delete(_buff);
 				}
@@ -101,7 +101,7 @@ try {
 		}
 	}
 } catch(_ex) {
-	GMConsolePrint(_ex.message);
+	print(_ex.message);
 	if (gameEnd == undefined) {
 		game_end(1);	
 	}
@@ -114,7 +114,7 @@ if (program != undefined) {
 	try {
 		catspeak_execute_ext(program, scope);		
 	} catch(_ex) {
-		GMConsolePrint(_ex.message);
+		print(_ex.message);
 	if (gameEnd == undefined) {
 		game_end(1);	
 	}

@@ -38,6 +38,7 @@
     {"id":{"name":"helper_funcs","path":"scripts/helper_funcs/helper_funcs.yy",},},
     {"id":{"name":"init","path":"scripts/init/init.yy",},},
     {"id":{"name":"is_gmlspeak","path":"scripts/is_gmlspeak/is_gmlspeak.yy",},},
+    {"id":{"name":"print","path":"scripts/print/print.yy",},},
     {"id":{"name":"scr_catspeak_codegen","path":"scripts/scr_catspeak_codegen/scr_catspeak_codegen.yy",},},
     {"id":{"name":"scr_catspeak_environment","path":"scripts/scr_catspeak_environment/scr_catspeak_environment.yy",},},
     {"id":{"name":"scr_catspeak_init","path":"scripts/scr_catspeak_init/scr_catspeak_init.yy",},},

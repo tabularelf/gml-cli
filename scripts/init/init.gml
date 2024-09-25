@@ -50,7 +50,7 @@ GMLSpeak.interface.exposeFunction(
 			}
 			
 			var _result = script_execute_ext(string, _args);
-			GMConsolePrint(_result);
+			print(_result);
 		}
 );
 		
