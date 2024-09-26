@@ -4,6 +4,9 @@
 Powered by GMLspeak and [Catspeak](https://github.com/katsaii/catspeak-lang)<br>
 Inspired by [gml-cli js version](https://github.com/christopherwk210/gml-cli)
 
+https://github.com/user-attachments/assets/1550344d-9c1b-4072-b28a-0e521d0f9677
+
+
 Usage:
 `gml-cli.exe -s file-goes-here` or `gml-cli.exe -script file-goes-here`
 
