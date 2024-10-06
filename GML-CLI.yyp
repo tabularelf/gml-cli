@@ -33,6 +33,7 @@
     {"id":{"name":"__gmlspeak_log","path":"scripts/__gmlspeak_log/__gmlspeak_log.yy",},},
     {"id":{"name":"__gmlspeak_method__","path":"scripts/__gmlspeak_method__/__gmlspeak_method__.yy",},},
     {"id":{"name":"GMLspeakEnvironment","path":"scripts/GMLspeakEnvironment/GMLspeakEnvironment.yy",},},
+    {"id":{"name":"GMLspeakGMLCompiler","path":"scripts/GMLspeakGMLCompiler/GMLspeakGMLCompiler.yy",},},
     {"id":{"name":"GMLspeakLexer","path":"scripts/GMLspeakLexer/GMLspeakLexer.yy",},},
     {"id":{"name":"GMLspeakParser","path":"scripts/GMLspeakParser/GMLspeakParser.yy",},},
     {"id":{"name":"helper_funcs","path":"scripts/helper_funcs/helper_funcs.yy",},},

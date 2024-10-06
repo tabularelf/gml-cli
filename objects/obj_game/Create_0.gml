@@ -11,6 +11,14 @@ for(var _i = 0; _i < parameter_count(); ++_i) {
 			);
 			++_i;
 		break;
+		case "-verbose":
+		array_push(_params, 
+			{
+				paramName: "verbose",
+				result: undefined,
+			}
+		);
+		break;
 		case "-debug":
 		case "-d":
 			array_push(_params, 
@@ -19,6 +27,15 @@ for(var _i = 0; _i < parameter_count(); ++_i) {
 					result: undefined,
 				}
 			);
+		break;
+		case "-string":
+		array_push(_params, 
+				{
+					paramName: "string",
+					result: parameter_string(_i+1),
+				}
+			);
+			++_i;
 		break;
 		case "-timeout":
 		case "-t":
@@ -41,6 +58,16 @@ for(var _i = 0; _i < parameter_count(); ++_i) {
 }
 
 var _index = array_find_index(_params, function(_elm, _index) {
+	return _elm.paramName == "verbose";
+});
+
+if (_index != -1) {
+	var _result = _params[_index];
+	array_delete(_params, _index, 1);
+	array_insert(_params, 0, _result);
+}
+
+var _index = array_find_index(_params, function(_elm, _index) {
 	return _elm.paramName == "debug";
 });
 
@@ -55,6 +82,7 @@ gameEnd = call_later(1,  time_source_units_frames, function() {
 });
 
 global.debug = false;
+global.verbose = false;
 
 global.catspeakTimeout = 1000;
 global.result = 0; // Exit safely
@@ -69,6 +97,10 @@ try {
 			case "debug":
 				global.debug = true;
 				print("Debug mode enabled!")
+			break;
+			case "verbose":
+				global.verbose = true;
+				print("Verbose mode activated");
 			break;
 			case "keepalive":
 				call_cancel(gameEnd);
@@ -95,16 +127,41 @@ try {
 					if (program != undefined) {
 						throw {message: "script was already defined!"};	
 					}
-					program = GMLSpeak.compile(GMLSpeak.parse(_buff));
-					if (global.debug) print("Program compiled successfully!");
+					var str = buffer_read(_buff, buffer_text);
+					
+					if (global.verbose) {
+						print($"Input:\n\n{str}\n\n=========\n");
+					}
+						var ast = GMLSpeak.parseString(str);
+					if (global.verbose) {
+						print($"Abstract Tree Syntax:\n\n{json_stringify(ast, true)}\n\n=========\n");
+					}
+					program = GMLSpeak.compile(ast);
+					if (global.debug) || (global.verbose)  print("Program compiled successfully!");
 				} finally {
 					if (buffer_exists(_buff)) buffer_delete(_buff);
 				}
 			break;
+			case "string":
+				if (program != undefined) {
+					throw {message: "script was already defined!"};	
+				}
+				var str = _params[_i].result;
+				
+				if (global.verbose) {
+					print($"Input:\n\n{str}\n\n=========\n");
+				}
+					var ast = GMLSpeak.parseString(str);
+				if (global.verbose) {
+					print($"Abstract Tree Syntax:\n\n{json_stringify(ast, true)}\n\n=========\n");
+				}
+				program = GMLSpeak.compile(ast);
+				if (global.debug) || (global.verbose)  print("Program compiled successfully!");
+			break;
 		}
 	}
 } catch(_ex) {
-	print(_ex.message);
+	print(_ex.message);	
 	if (gameEnd == undefined) {
 		game_end(1);	
 	}
@@ -115,9 +172,16 @@ try {
 //GMConsolePrint(string(scope));
 if (program != undefined) {
 	try {
+		if (global.verbose) {
+			print("===Results===\n\n");	
+		}
 		catspeak_execute_ext(program, scope);		
 	} catch(_ex) {
-		print(_ex.message);
+		if (global.verbose) {
+			print(_ex.longMessage);	
+		} else {
+			print(_ex.message);
+		}
 	if (gameEnd == undefined) {
 		game_end(1);	
 	}

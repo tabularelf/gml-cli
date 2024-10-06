@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"GMLspeakGMLCompiler",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"GMLspeakGMLCompiler",
+  "parent":{
+    "name":"GML-CLI",
+    "path":"GML-CLI.yyp",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
