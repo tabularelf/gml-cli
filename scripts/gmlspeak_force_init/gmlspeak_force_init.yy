@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"is_gmlspeak",
+  "%Name":"gmlspeak_force_init",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"is_gmlspeak",
+  "name":"gmlspeak_force_init",
   "parent":{
     "name":"GMLspeak",
     "path":"folders/GMLspeak.yy",

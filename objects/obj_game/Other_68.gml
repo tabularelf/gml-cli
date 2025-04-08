@@ -1,3 +1,3 @@
-if (scope[$ "__onAsyncNetwork__"] != undefined) {
-	execute(scope.__onAsyncNetwork__);	
+if (self[$ "__onAsyncNetwork__"] != undefined) {
+	execute(__onAsyncNetwork__);	
 }

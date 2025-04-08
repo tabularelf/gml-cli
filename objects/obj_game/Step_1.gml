@@ -1,3 +1,3 @@
-if (scope[$ "__onBeginStep__"] != undefined) {
-	execute(scope.__onBeginStep__);	
+if (self[$ "__onBeginStep__"] != undefined) {
+	execute(self.__onBeginStep__);	
 }

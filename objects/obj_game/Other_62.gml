@@ -1,3 +1,3 @@
-if (scope[$ "__onAsyncHTTP__"] != undefined) {
-	execute(scope.__onAsyncHTTP__);	
+if (self[$ "__onAsyncHTTP__"] != undefined) {
+	execute(__onAsyncHTTP__);	
 }

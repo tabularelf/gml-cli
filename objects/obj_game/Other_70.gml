@@ -1,3 +1,3 @@
-if (scope[$ "__onAsyncSocial__"] != undefined) {
-	execute(scope.__onAsyncSocial__);	
+if (self[$ "__onAsyncSocial__"] != undefined) {
+	execute(__onAsyncSocial__);	
 }

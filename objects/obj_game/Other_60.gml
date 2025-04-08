@@ -1,3 +1,3 @@
-if (scope[$ "__onAsyncImageLoaded__"] != undefined) {
-	execute(scope.__onAsyncImageLoaded__);	
+if (self[$ "__onAsyncImageLoaded__"] != undefined) {
+	execute(__onAsyncImageLoaded__);	
 }

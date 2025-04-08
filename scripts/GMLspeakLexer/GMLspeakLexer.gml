@@ -48,6 +48,8 @@ enum GMLspeakToken {
 	__GMFILE__,
 	__GMFUNCTION__,
     DELETE,
+    FINALLY,
+	EXIT,
     /// @ignore
     __SIZE__
 }

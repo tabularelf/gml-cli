@@ -1,8 +1,6 @@
 draw_enable_drawevent(false);
 debug_event("OutputDebugOn");
-globalvar GMLSpeak;
-GMLSpeak = new GMLspeakEnvironment();
-GMLSpeak.codegenType = GMLspeakGMLCompiler;
+gmlspeak_force_init();
 
 for(var _i = 0; _i < 10000; ++_i) {
 	var _name = script_get_name(_i);
@@ -11,18 +9,26 @@ for(var _i = 0; _i < 10000; ++_i) {
 		&&  (!string_starts_with(_name, "YoYo_"))
 		&&  (!string_starts_with(_name, "$"))) {
 			
-		GMLSpeak.interface.exposeFunction(_name, _i);	
+		GMLspeak.interface.exposeFunction(_name, _i);	
 	}     
 }
 
-GMLSpeak.toString = function() {
+GMLspeak.toString = function() {
 	return "";	
 }
 
-GMLSpeak.sharedGlobal.GMLSpeak = GMLSpeak;
-GMLSpeak.interface.exposeAsset("obj_blank");
+GMLspeak.sharedGlobal[$ "GMLspeak"] = global.__gmlspeak__;
+GMLspeak.interface.compileFlags.checkForVariables = true;
+GMLspeak.interface.compileFlags.useVariableHash = true;
+GMLspeak.interface.exposeAsset("obj_instance");
+GMLspeak.interface.exposeFunction(
+	"method_get_index", 
+	catspeak_get_index,
+	"method_get_self",
+	catspeak_get_self
+);
 
-GMLSpeak.interface.exposeFunction(
+GMLspeak.interface.exposeFunction(
 		"method_get_self", 
 		function(_func) {
 			if (is_catspeak(_func)) {
@@ -42,7 +48,7 @@ GMLSpeak.interface.exposeFunction(
 		},
 		"method", 
 		function(_self, _func) {
-			if (is_catspeak(_func) && (_self == undefined ||_self == GMLSpeak.sharedGlobal)) {
+			if (is_catspeak(_func) && (_self == undefined ||_self == GMLspeak.sharedGlobal)) {
 				return __catspeak_get_callee__(_func);
 			}
 	
@@ -59,11 +65,11 @@ GMLSpeak.interface.exposeFunction(
 		}
 );
 
-GMLSpeak.interface.exposeFunction("execute_file", function(_path) {
+GMLspeak.interface.exposeFunction("execute_file", function(_path) {
 	try {
 		var _buff = buffer_load(_path);
 		if (!buffer_exists(_buff)) throw {message: $"{_path} doesn't exist!"};
-		var _program = GMLSpeak.compile(GMLSpeak.parse(_buff));
+		var _program = GMLspeak.compile(GMLspeak.parse(_buff));
 		if (argument_count == 1) {
 			return catspeak_execute(_program);
 		} else {
@@ -82,5 +88,5 @@ GMLSpeak.interface.exposeFunction("execute_file", function(_path) {
 	
 });
 
-GMLSpeak.interface.exposeConstant("pwd", __GetExecutablePath());
+GMLspeak.interface.exposeConstant("pwd", __GetExecutablePath());
 		

@@ -1,3 +1,3 @@
-if (scope[$ "__onAsyncSaveLoad__"] != undefined) {
-	execute(scope.__onAsyncSaveLoad__);	
+if (self[$ "__onAsyncSaveLoad__"] != undefined) {
+	execute(__onAsyncSaveLoad__);	
 }

@@ -1,3 +1,3 @@
-if (scope[$ "__onAsyncSystem__"] != undefined) {
-	execute(scope.__onAsyncSystem__);	
+if (self[$ "__onAsyncSystem__"] != undefined) {
+	execute(__onAsyncSystem__);	
 }

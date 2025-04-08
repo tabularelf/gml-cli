@@ -77,7 +77,7 @@ if (_index != -1) {
 	array_insert(_params, 0, _result);
 }
 
-gameEnd = call_later(1,  time_source_units_frames, function() {
+var gameEnd = call_later(1,  time_source_units_frames, function() {
 	game_end(global.result);
 });
 
@@ -87,7 +87,6 @@ global.verbose = false;
 global.catspeakTimeout = 1000;
 global.result = 0; // Exit safely
 program = undefined;
-scope = {};
 
 try {
 	var _len = array_length(_params);
@@ -111,7 +110,7 @@ try {
 				if (string_pos("inf", _params[_i])) {
 					global.catspeakTimeout = infinity;	
 				} else {
-					global.catspeakTimeout = real(result);
+					global.catspeakTimeout = real(_params[_i].result);
 				}
 			break;
 			case "script":
@@ -132,11 +131,12 @@ try {
 					if (global.verbose) {
 						print($"Input:\n\n{str}\n\n=========\n");
 					}
-						var ast = GMLSpeak.parseString(str);
+					
+					var ast = GMLspeak.parseString(str);
 					if (global.verbose) {
 						print($"Abstract Tree Syntax:\n\n{json_stringify(ast, true)}\n\n=========\n");
 					}
-					program = GMLSpeak.compile(ast);
+					program = GMLspeak.compile(ast);
 					if (global.debug) || (global.verbose)  print("Program compiled successfully!");
 				} finally {
 					if (buffer_exists(_buff)) buffer_delete(_buff);
@@ -151,11 +151,11 @@ try {
 				if (global.verbose) {
 					print($"Input:\n\n{str}\n\n=========\n");
 				}
-					var ast = GMLSpeak.parseString(str);
+					var ast = GMLspeak.parseString(str);
 				if (global.verbose) {
 					print($"Abstract Tree Syntax:\n\n{json_stringify(ast, true)}\n\n=========\n");
 				}
-				program = GMLSpeak.compile(ast);
+				program = GMLspeak.compile(ast);
 				if (global.debug) || (global.verbose)  print("Program compiled successfully!");
 			break;
 		}
@@ -168,7 +168,7 @@ try {
 	exit;
 } 
 
-//GMConsolePrint(string(GMLSpeak.sharedGlobal));
+//GMConsolePrint(string(GMLspeak.sharedGlobal));
 //GMConsolePrint(string(scope));
 if (program != undefined) {
 	try {
@@ -182,9 +182,17 @@ if (program != undefined) {
 		} else {
 			print(_ex.message);
 		}
-	if (gameEnd == undefined) {
-		game_end(1);	
+		
+		if (gameEnd == undefined) {
+			game_end(1);	
+		}
 	}
-	exit;	
-	}
+}
+
+if (file_exists("main.gml")) {
+	var buff = buffer_load("main.gml");
+	var ast = GMLspeak.parse(buff);
+	buffer_delete(buff);
+	var mainProgram = GMLspeak.compile(ast);
+	catspeak_execute(mainProgram);
 }

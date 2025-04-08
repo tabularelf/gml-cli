@@ -2,9 +2,14 @@
 function GMLspeakEnvironment() : CatspeakEnvironment() constructor {
 	self.parserType = GMLspeakParser;
 	self.lexerType = GMLspeakLexer;
+    self.codegenType = GMLspeakCodegen;
 	self.currentFilename = "unknown";
 	self.canWriteRoomProperties = false;
 	enableSharedGlobal(true);
+    interface.compileFlags = {
+        checkForVariables: false,
+        useVariableHash: false,
+    };
 
 	static enableWritingRoom = function(_value) {
 		if (_value) {
@@ -149,6 +154,10 @@ function GMLspeakEnvironment() : CatspeakEnvironment() constructor {
 		"^",				CatspeakToken.BITWISE_XOR,
 		"|",				CatspeakToken.BITWISE_OR,
 		"self",				CatspeakToken.SELF,
+        "other",			CatspeakToken.OTHER,
+        "try",              CatspeakToken.DO,
+        "catch",            CatspeakToken.CATCH,
+        "finally",          GMLspeakToken.FINALLY,
         "toString",         CatspeakToken.IDENT,
 		
 		// Implemented as comments since these kind of act like two separate comments.
@@ -186,15 +195,12 @@ function GMLspeakEnvironment() : CatspeakEnvironment() constructor {
 		"_GMFUNCTION_",		GMLspeakToken.__GMFUNCTION__,
 		"argument",			CatspeakToken.PARAMS,
 		"argument_count",	CatspeakToken.PARAMS_COUNT,
+		"exit",				GMLspeakToken.EXIT,
 		// TODO: Make delete work with other accessors
 		//"delete",           GMLspeakToken.DELETE,
 	);
 	
 	interface.exposeDynamicConstant(
-		"other", function() {
-			return global.__catspeakGmlOther ?? sharedGlobal;	
-		},
-		
 		// Exists as getters only
 		"room", 
 		function() {return room;},
@@ -208,7 +214,7 @@ function GMLspeakEnvironment() : CatspeakEnvironment() constructor {
 		function() {return keyboard_string;},
 	);
 	
-	interface.exposeConstant("global", sharedGlobal);
+	interface.exposeDynamicConstant("global", function() {return sharedGlobal;});
 	
 	interface.exposeMethod( 
 		"method",

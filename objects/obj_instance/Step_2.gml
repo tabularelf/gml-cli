@@ -1,3 +1,3 @@
 if (self[$ "__onEndStep__"] != undefined) {
-	execute(__onEndStep__);	
+	execute(__onEndStep__);
 }
